@@ -101,6 +101,12 @@ namespace cluster
                 mem.AddRange((List<int>)(left_child["members"]));
                 mem.AddRange((List<int>)(right_child["members"]));
                 parent["members"] = mem;
+                string mems = "";
+                foreach (int x in mem)
+                {
+                    mems += x+1 + ", ";
+                }
+                Console.WriteLine("clustering " + mems);
 
                 parent["dist_left"] = 0;
                 if ((bool)left_child["leaf"] != true)
@@ -127,11 +133,12 @@ namespace cluster
             while (true)
             {
                 // display info available at this node
+                Console.WriteLine(" \n");
                 string mems = "";
                 List<int> members = (List<int>)curr["members"];
                 foreach (int x in members)
                 {
-                    mems += x + ", ";
+                    mems += x +1+ ", ";
                 }
                 Console.WriteLine("this node contains " + mems);
                 if ((bool)curr["leaf"] != true)
